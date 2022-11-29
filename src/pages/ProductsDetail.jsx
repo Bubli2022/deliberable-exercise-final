@@ -10,7 +10,7 @@ const ProductsDetail = () => {
       (newProduct) => newProduct.id === Number(id)
    )
    const relatedProducts = newProductList.filter(
-      (newProduct) => newProduct.category.id === newProductDetail.category.id
+      (newProduct) => newProduct.category.id === newProductDetail?.category.id
    )
    console.log(relatedProducts)
    return (
