@@ -62,7 +62,7 @@ const Home = () => {
                ))}
             </ListGroup>
          </Col>
-         <Col>
+         <Col lg={9}>
             <InputGroup className="mb-3">
                <Form.Control
                   placeholder="Search Product"
@@ -83,6 +83,7 @@ const Home = () => {
                         <Card.Img
                            variant="top"
                            src={newProduct.productImgs[0]}
+                           style={{ height: 200, objectFit: "contain" }}
                         />
                         <Card.Body>
                            <Card.Title>{newProduct.title}</Card.Title>
