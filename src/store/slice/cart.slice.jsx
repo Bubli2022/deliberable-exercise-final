@@ -36,7 +36,6 @@ export const addCartThunk = (cart) => (dispatch) => {
 }
 
 export const purchaseCartThunk = () => (dispatch) => {
-   console.log("me ejecute")
    dispatch(setIsLoading(true))
    return axios
       .post(
@@ -49,17 +48,16 @@ export const purchaseCartThunk = () => (dispatch) => {
       .finally(() => dispatch(setIsLoading(false)))
 }
 
-// export const puchaseCartThunk = () => (dispatch) => {
-//    dispatch(setIsLoading(true))
-//    return axios
-//       .post(
-//          "https://e-commerce-api.academlo.tech/api/v1/purchases",
-//          {},
-//          getconfig()
-//       )
-//       .then(() => dispatch(setCart([])))
-//       .finally(() => dispatch(setIsLoading(false)))
-// }
+export const deleteCartThunk = (id) => (dispatch) => {
+   dispatch(setIsLoading(true))
+   return axios
+      .delete(
+         "https://e-commerce-api.academlo.tech/api/v1/cart/" + id,
+         getConfig()
+      )
+      .then(() => dispatch(getCartThunk()))
+      .finally(() => dispatch(setIsLoading(false)))
+}
 
 export const { setCart } = cartSlice.actions
 
