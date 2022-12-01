@@ -17,10 +17,49 @@ export const cartSlice = createSlice({
 export const getCartThunk = () => (dispatch) => {
    dispatch(setIsLoading(true))
    axios
-      .get("https://e-commerce-api.academlo.tech/api/v1/cart/", getConfig())
+      .get("https://e-commerce-api.academlo.tech/api/v1/cart", getConfig())
       .then((res) => dispatch(setCart(res.data.data.cart.products)))
       .finally(() => dispatch(setIsLoading(false)))
 }
+
+export const addCartThunk = (cart) => (dispatch) => {
+   dispatch(setIsLoading(true))
+   return axios
+      .post(
+         "https://e-commerce-api.academlo.tech/api/v1/cart",
+         cart,
+         getConfig()
+      )
+      .then(() => dispatch(getCartThunk()))
+      .catch((error) => console.log(error.response.data))
+      .finally(() => dispatch(setIsLoading(false)))
+}
+
+export const purchaseCartThunk = () => (dispatch) => {
+   console.log("me ejecute")
+   dispatch(setIsLoading(true))
+   return axios
+      .post(
+         "https://e-commerce-api.academlo.tech/api/v1/purchases",
+         {},
+         getConfig()
+      )
+      .then(() => dispatch(setCart([])))
+      .catch((error) => console.log(error.response.data))
+      .finally(() => dispatch(setIsLoading(false)))
+}
+
+// export const puchaseCartThunk = () => (dispatch) => {
+//    dispatch(setIsLoading(true))
+//    return axios
+//       .post(
+//          "https://e-commerce-api.academlo.tech/api/v1/purchases",
+//          {},
+//          getconfig()
+//       )
+//       .then(() => dispatch(setCart([])))
+//       .finally(() => dispatch(setIsLoading(false)))
+// }
 
 export const { setCart } = cartSlice.actions
 

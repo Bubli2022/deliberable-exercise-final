@@ -78,12 +78,16 @@ const Home = () => {
                   <Col key={newProduct.id}>
                      <Card
                         onClick={() => navigate(`/products/${newProduct.id}`)}
-                        style={{ height: "100%" }}
+                        style={{ height: "100%", cursor: "pointer" }}
                      >
                         <Card.Img
                            variant="top"
                            src={newProduct.productImgs[0]}
-                           style={{ height: 200, objectFit: "contain" }}
+                           style={{
+                              height: 200,
+                              objectFit: "contain",
+                              padding: "2rem",
+                           }}
                         />
                         <Card.Body>
                            <Card.Title>{newProduct.title}</Card.Title>

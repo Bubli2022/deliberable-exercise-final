@@ -23,13 +23,17 @@ const MyNavbar = () => {
                <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
                      <Nav.Link as={Link} to="/login">
-                        Login{" "}
+                        <i className="fa-solid fa-user"></i>
                      </Nav.Link>{" "}
                      <Nav.Link as={Link} to="/purchases">
-                        Purchase{" "}
+                        <i className="fa-solid fa-box-archive"></i>
                      </Nav.Link>
-                     <Nav.Link onClick={handleShow}>Cart (Sidebar)</Nav.Link>
-                     <Nav.Link onClick={logout}>Logout</Nav.Link>
+                     <Nav.Link onClick={handleShow}>
+                        <i className="fa-solid fa-cart-shopping"></i>
+                     </Nav.Link>
+                     <Nav.Link onClick={logout}>
+                        <i className="fa-solid fa-user-xmark"></i>
+                     </Nav.Link>
                   </Nav>
                </Navbar.Collapse>
             </Container>

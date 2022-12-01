@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import getConfig from "../../utils/getConfig"
+import { getCartThunk } from "./cart.slice"
 import { setIsLoading } from "./isLoading.slice"
 
 export const purchasesSlice = createSlice({
@@ -20,7 +21,9 @@ export const getPurchasesThunk = () => (dispatch) => {
          "https://e-commerce-api.academlo.tech/api/v1/purchases/",
          getConfig()
       )
-      .then((res) => dispatch(setPurchases(res.data.data.purchases)))
+      .then((res) => {
+         dispatch(setPurchases(res.data.data.purchases))
+      })
       .finally(() => dispatch(setIsLoading(false)))
 }
 

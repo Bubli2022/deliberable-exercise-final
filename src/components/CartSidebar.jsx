@@ -1,11 +1,13 @@
 import React, { useEffect } from "react"
-import { Offcanvas } from "react-bootstrap"
+import { Button, ListGroup, Offcanvas } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
-import { getCartThunk } from "../store/slice/cart.slice"
+import { Link } from "react-router-dom"
+
+import { getCartThunk, purchaseCartThunk } from "../store/slice/cart.slice"
 
 const CartSidebar = ({ show, handleClose }) => {
    const dispatch = useDispatch()
-   const cart = useSelector((state) => state.products)
+   const cart = useSelector((state) => state.cart)
 
    useEffect(() => {
       dispatch(getCartThunk())
@@ -17,9 +19,23 @@ const CartSidebar = ({ show, handleClose }) => {
             <Offcanvas.Title>Cart</Offcanvas.Title>
          </Offcanvas.Header>
          <Offcanvas.Body>
-            Some text as placeholder. In real life you can have the elements you
-            have chosen. Like, text, images, lists, etc.
+            <ListGroup>
+               {cart?.map((cart) => (
+                  <ListGroup.Item key={cart.id}>
+                     <Link to={`/products/${cart.id}`}>
+                        <div className="add--cart--products">
+                           <div> {cart.title}</div>
+                           <br />
+                           <div>{cart.productsInCart.quantity}</div>
+                           <br />
+                           <div>{cart.price}</div>
+                        </div>
+                     </Link>
+                  </ListGroup.Item>
+               ))}
+            </ListGroup>
          </Offcanvas.Body>
+         <Button onClick={() => dispatch(purchaseCartThunk())}>CheckOut</Button>
       </Offcanvas>
    )
 }

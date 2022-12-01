@@ -1,0 +1,22 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.quantity {
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   align-items: center;
+}
+
+/* .list-group-item {
+   text-align: right;
+} */
+
+@media screen and (min-width: 992px) {
+   .description {
+      font-size: 1.5rem;
+   }
+}
